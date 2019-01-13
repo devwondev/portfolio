@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	data-layout-decorate="~{layout/defaultLayout}">
+	
+	<th:block layout:fragment="script">
+		<script src="/webjars/ScrollMagic/2.0.5/minified/ScrollMagic.min.js"></script>
+		<script src="/webjars/progressbar.js/1.0.1/dist/progressbar.js"></script>
+		<script type="text/javascript" src="/js/skills.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				/* tab menu */
+				$("#tab-index-btn").addClass("active");
+		    });
+			(function( $ ) {
+			    "use strict";
+			    $(function() {
+			        function animated_contents() {
+			            $(".zt-skill-bar > div ").each(function (i) {
+			                var $this  = $(this),
+			                    skills = $this.data('width');
+
+			                $this.css({'width' : skills + '%'});
+			                $this.find('span').text(skills + ' %');
+			            });
+			        }
+			        
+			        if(jQuery().appear) {
+			            $('.zt-skill-bar').appear().on('appear', function() {
+			                animated_contents();
+			            });
+			        } else {
+			            animated_contents();
+			        }
+			    });
+			}(jQuery));
+		</script>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		<!--간단한 자기소개-->
+		<div class="box-1">
+			<div class="self-introduction">
+				<h2 class="box-title">
+					간단한 자기소개
+				</h2>
+				
+				<p class="text-content">
+					안녕하세요. 개발자를 꿈꾸는 '방혜원'입니다.<br>
+					<span class="point-text-black">배움</span>을 가까이 하고<br>
+					<span class="point-text-color">소통</span>과 <span class="point-text-color">협력</span>을 중요시하는 개발자가 되도록 노력하겠습니다.
+				</p>
+			</div>
+		</div>
+		<!--능력치-->
+		<div class="box-2">
+			<h2 class="box-title">친밀도</h2>
+			<th:block th:if="${browser.contains('Chrome')}">
+				<div class="skill-bar-box">
+					<h4>JAVA</h4>
+					<div id="skill_1_pbar" data-name="skill_1_pbar" class="skill_bars" data-perc="0.50" data-color-start="#981d37" data-color-end="#dc1d37"></div>
+				</div>
+				<div class="skill-bar-box">
+					<h4>JQUERY / JAVASCRIPT</h4>
+					<div id="skill_2_pbar" data-name="skill_2_pbar" class="skill_bars" data-perc="0.30" data-color-start="#981d37" data-color-end="#dc1d37"></div>
+				</div>
+				<div class="skill-bar-box">
+					<h4>HTML/CSS</h4>
+					<div id="skill_3_pbar" data-name="skill_3_pbar" class="skill_bars" data-perc="0.20" data-color-start="#981d37" data-color-end="#dc1d37"></div>
+				</div>
+			</th:block>
+			<th:block th:if="${browser.contains('Trident') || browser.contains('MSIE')}">
+				<div class="zt-skill-bar-box">
+					<h4>JAVA</h4>
+					<div class="zt-skill-bar"><div data-width="88" style="">.<span></span></div></div>
+					<h4>JQUERY / JAVASCRIPT</h4>
+					<div class="zt-skill-bar"><div data-width="55" style="">.<span></span></div></div>
+					<h4>HTML/CSS</h4>
+					<div class="zt-skill-bar"><div data-width="22" style="">.<span></span></div></div>
+				</div>
+			</th:block>
+		</div>
+		<!--학력사항-->
+		<div class="box-3">
+			<h2 class="box-title">
+				학력사항
+			</h2>
+			<table class="box-table">
+				<tr>
+					<th>2014.03 - 2018.08</th>
+					<td>원광대학교 정보통신공학과</td>
+				</tr>
+				<tr>
+					<th>2018.07 - 2019.01</th>
+					<td>한국스마트정보교육원 수료</td>
+				</tr>
+			</table>
+		</div>
+		<!--경력사항-->
+		<!-- <div class="box-4">
+			<h2 class="box-title">경력사항</h2>
+			<table class="box-table">
+				<tr>
+					<th>2014.02 - 2016.02</th>
+					<td>어느회사</td>
+				</tr>
+			</table>
+		</div> -->
+		<!--자격정보-->
+		<div class="box-5">
+			<h2 class="box-title">자격정보</h2>
+			<table class="box-table">
+				<tr>
+					<th>2018.05</th>
+					<td>정보처리기사</td>
+				</tr>
+			</table>
+		</div>
+	</th:block>
+</body>
+</html>
